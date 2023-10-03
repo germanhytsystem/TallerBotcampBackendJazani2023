@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Admins\" />
+    <None Remove="Generals\" />
+    <None Remove="Admins\Models\" />
+    <None Remove="Admins\Repositories\" />
+    <None Remove="Cores\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generals\" />
+    <Folder Include="Cores\" />
+  </ItemGroup>
 </Project>
