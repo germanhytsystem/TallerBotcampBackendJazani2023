@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Api", "Jazani.Api\Jazani.Api.csproj", "{8DD2A7D8-C0FD-4510-BA35-7AB60DBB4AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Application", "Jazani.Application\Jazani.Application.csproj", "{A536BA2C-0E20-477E-B585-5DA1AE3A0DE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Domain", "Jazani.Domain\Jazani.Domain.csproj", "{ED95A547-B892-4E62-930D-30C5A8F5C211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Infrastructure", "Jazani.Infrastructure\Jazani.Infrastructure.csproj", "{CEB5C320-C526-467B-B528-D814E8417579}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DD2A7D8-C0FD-4510-BA35-7AB60DBB4AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DD2A7D8-C0FD-4510-BA35-7AB60DBB4AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DD2A7D8-C0FD-4510-BA35-7AB60DBB4AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DD2A7D8-C0FD-4510-BA35-7AB60DBB4AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A536BA2C-0E20-477E-B585-5DA1AE3A0DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A536BA2C-0E20-477E-B585-5DA1AE3A0DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A536BA2C-0E20-477E-B585-5DA1AE3A0DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A536BA2C-0E20-477E-B585-5DA1AE3A0DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED95A547-B892-4E62-930D-30C5A8F5C211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED95A547-B892-4E62-930D-30C5A8F5C211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED95A547-B892-4E62-930D-30C5A8F5C211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED95A547-B892-4E62-930D-30C5A8F5C211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB5C320-C526-467B-B528-D814E8417579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB5C320-C526-467B-B528-D814E8417579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB5C320-C526-467B-B528-D814E8417579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB5C320-C526-467B-B528-D814E8417579}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DBE6F20-006B-481D-8FED-58DAFB3DDDF5}
+	EndGlobalSection
+EndGlobal
