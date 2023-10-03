@@ -4,15 +4,29 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jazani.Infrastructure\Jazani.Infrastructure.csproj" />
+    <None Remove="Controllers\" />
+    <None Remove="Controllers\Admins\" />
+    <None Remove="Controllers\Generals\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Folder Include="Controllers\Generals\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jazani.Infrastructure\Jazani.Infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Jazani.Application\Jazani.Application.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
