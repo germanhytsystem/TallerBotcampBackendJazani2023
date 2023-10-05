@@ -22,10 +22,10 @@ namespace Jazani.Infrastructure.Cores.Contexts
             });
 
             // Registro de servicios transitorios entre interfaz e implementación
-            services.AddTransient<ILiabilitieRepository, LiabilitieRepository>();
-            services.AddTransient<IModuleRepository, ModuleRepository>();
+            //services.AddTransient<ILiabilitieRepository, LiabilitieRepository>();
+            //services.AddTransient<IModuleRepository, ModuleRepository>();
 
-            services.AddTransient<ILiabilitieTypeRepository,LiabilitieTypeRepository>();
+            //services.AddTransient<ILiabilitieTypeRepository,LiabilitieTypeRepository>();
 
 
             return services;

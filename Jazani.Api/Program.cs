@@ -1,9 +1,10 @@
 ﻿
 using Jazani.Application.Admins.Dtos.Modules.Mappers;
-using Jazani.Application.Admins.Dtos.Liabilities.Mappers;
 using Jazani.Application.Cores.Contexts;
 using Jazani.Domain.Admins.Models;
 using Jazani.Infrastructure.Cores.Contexts;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,14 @@ builder.Services.addInfrastructureServices(builder.Configuration);
 
 // Applications
 builder.Services.AddApplicationServices();
+
+//Autofac
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(options =>
+    {
+        options.RegisterModule(new InfraestructureAutofacModule());
+        options.RegisterModule(new ApplicationAutofacModule());
+    });
 
 
 //builder.Services.AddAutoMapper(typeof(ModuleMapper));
