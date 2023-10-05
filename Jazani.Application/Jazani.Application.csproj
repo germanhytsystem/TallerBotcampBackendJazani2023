@@ -6,4 +6,25 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Admins\" />
+    <None Remove="Generals\" />
+    <None Remove="Admins\Dtos\" />
+    <None Remove="Admins\Services\" />
+    <None Remove="Cores\" />
+    <None Remove="Admins\Dtos\Offices\" />
+    <None Remove="Admins\Services\Implementations\" />
+    <None Remove="Cores\Contexts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cores\" />
+    <Folder Include="Cores\Contexts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jazani.Domain\Jazani.Domain.csproj" />
+  </ItemGroup>
 </Project>
