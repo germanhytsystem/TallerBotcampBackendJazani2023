@@ -13,8 +13,4 @@
     <None Remove="Admins\Repositories\" />
     <None Remove="Cores\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generals\" />
-    <Folder Include="Cores\" />
-  </ItemGroup>
 </Project>

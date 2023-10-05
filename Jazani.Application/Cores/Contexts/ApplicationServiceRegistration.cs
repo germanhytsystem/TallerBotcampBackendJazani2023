@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Jazani.Application.Admins.Services;
 using Jazani.Application.Admins.Services.Implementations;
+using Jazani.Application.Generals.Services;
+using Jazani.Application.Generals.Services.Implementatios;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Jazani.Application.Cores.Contexts
@@ -17,6 +19,8 @@ namespace Jazani.Application.Cores.Contexts
             services.AddTransient<IModuleService, ModuleService>();
             services.AddTransient<ILiabilitieService, LiabilitieService>();
 
+
+            services.AddTransient<ILiabilitieTypeService, LiabilitieTypeService>();
 
             return services;
 		}

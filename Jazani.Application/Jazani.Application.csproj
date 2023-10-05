@@ -17,7 +17,6 @@
     <None Remove="Cores\Contexts\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Generals\" />
     <Folder Include="Cores\" />
     <Folder Include="Cores\Contexts\" />
   </ItemGroup>
