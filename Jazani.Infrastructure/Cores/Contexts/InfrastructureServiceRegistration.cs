@@ -25,7 +25,6 @@ namespace Jazani.Infrastructure.Cores.Contexts
             //services.AddTransient<ILiabilitieRepository, LiabilitieRepository>();
             //services.AddTransient<IModuleRepository, ModuleRepository>();
 
-            //services.AddTransient<ILiabilitieTypeRepository,LiabilitieTypeRepository>();
 
 
             return services;

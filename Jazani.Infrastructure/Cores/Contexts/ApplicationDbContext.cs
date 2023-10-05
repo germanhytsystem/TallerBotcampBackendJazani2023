@@ -29,8 +29,6 @@ namespace Jazani.Infrastructure.Cores.Contexts
             //modelBuilder.ApplyConfiguration(new ModuleConfiguration());
 
 
-            //modelBuilder.ApplyConfiguration(new LiabilitieTypeConfiguration());
-
             //Automatiza los aplicaciones del modelBuilder
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 

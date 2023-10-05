@@ -3,18 +3,27 @@ using Jazani.Domain.Generals.Repositories;
 using Jazani.Infrastructure.Cores.Contexts;
 using Jazani.Infrastructure.Cores.Persistences;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jazani.Infrastructure.Generals.Persistences
 {
-    public class LiabilitieTypeRepository : CrudRepository<LiabilitieType, int>,ILiabilitieTypeRepository
+    public class LiabilitieRepository : CrudRepository<Liabilitie, int>,ILiabilitieRepository
     {
-        public LiabilitieTypeRepository(ApplicationDbContext dbContext) : base(dbContext)
+
+        private readonly ApplicationDbContext _dbContext;
+
+        public LiabilitieRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+            _dbContext = dbContext;
+        }
+
+        public override async Task<IReadOnlyList<Liabilitie>> FindAllAsync()
+        {
+            return await _dbContext.Set<Liabilitie>().Include(t => t.Holder).AsNoTracking().ToListAsync();
+        }
+
+        public override async Task<Liabilitie?> FindByIdAsync(int id)
+        {
+            return await _dbContext.Set<Liabilitie>().Include(t => t.Holder).FirstOrDefaultAsync(t => t.Id== id);
 
         }
 

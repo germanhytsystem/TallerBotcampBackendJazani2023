@@ -1,10 +1,7 @@
-﻿
-using Jazani.Application.Admins.Dtos.Modules.Mappers;
-using Jazani.Application.Cores.Contexts;
-using Jazani.Domain.Admins.Models;
-using Jazani.Infrastructure.Cores.Contexts;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Jazani.Application.Cores.Contexts;
+using Jazani.Infrastructure.Cores.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -35,7 +35,7 @@ namespace Jazani.Infrastructure.Cores.Persistences
         public virtual async Task<T> SaveAsync(T entity)
         {
             //throw new NotImplementedException();
-            EntityState state = _dbContext.Entry(entity).State;
+            EntityState? state = _dbContext.Entry(entity).State;
 
             _ = state switch
             {

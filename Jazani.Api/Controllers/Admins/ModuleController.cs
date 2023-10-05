@@ -28,7 +28,7 @@ namespace Jazani.Api.Controllers.Admins
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ModuleDto> Get(int id)
+        public async Task<ModuleDto?> Get(int id)
         {
             return await _ModuleService.FindByIdAsync(id);
         }
