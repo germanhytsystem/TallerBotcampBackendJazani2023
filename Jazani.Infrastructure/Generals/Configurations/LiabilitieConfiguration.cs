@@ -28,7 +28,7 @@ namespace Jazani.Infrastructure.Generals.Configurations
             builder.Property(t => t.State).HasColumnName("state");
             builder.Property(t => t.HolderId).HasColumnName("holderid");
 
-            builder.HasOne(one => one.Holder).WithMany(many => many.Liabilities).HasForeignKey(fk => fk.HolderId);
+            //builder.HasOne(one => one.Holder).WithMany(many => many.Liabilities).HasForeignKey(fk => fk.HolderId);
 
         }
     }

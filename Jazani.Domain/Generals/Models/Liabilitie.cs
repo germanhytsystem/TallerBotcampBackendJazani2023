@@ -13,6 +13,6 @@
 
         public virtual ICollection<LiabilitieDocument>? LiabilitieDocuments { get; set; }
 
-        public virtual Holder? Holder { get; set; }
+        //public virtual Holder? Holder { get; set; }
     }
 }

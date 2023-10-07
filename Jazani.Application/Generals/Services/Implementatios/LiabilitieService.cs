@@ -63,9 +63,9 @@ namespace Jazani.Application.Generals.Services.Implementatios
         public async Task<IReadOnlyList<LiabilitieDto>> FindAllAsync()
         {
             //throw new NotImplementedException();
-            IReadOnlyList<Liabilitie> liabilitie = await _liabilitieTypeRepository.FindAllAsync();
+            IReadOnlyList<Liabilitie> liabilities = await _liabilitieTypeRepository.FindAllAsync();
 
-            return _mapper.Map<IReadOnlyList<LiabilitieDto>>(liabilitie);
+            return _mapper.Map<IReadOnlyList<LiabilitieDto>>(liabilities);
         }
 
         public async Task<LiabilitieDto?> FindByIdAsync(int id)

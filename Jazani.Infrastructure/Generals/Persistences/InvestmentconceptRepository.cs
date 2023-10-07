@@ -5,15 +5,13 @@ using Jazani.Infrastructure.Cores.Persistences;
 
 namespace Jazani.Infrastructure.Generals.Persistences
 {
-    public class HolderRepository : CrudRepository<Holder, int>,IHolderRepository
+    public class InvestmentconceptRepository : CrudRepository<Investmentconcept, int>, IInvestmentconceptRepository
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public HolderRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public InvestmentconceptRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
-
-
     }
 }
