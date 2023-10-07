@@ -1,7 +1,9 @@
-﻿using Jazani.Domain.Generals.Models;
-using Jazani.Domain.Generals.Repositories;
-using AutoMapper;
+﻿using AutoMapper;
+using Jazani.Application.Cores.Exceptions;
 using Jazani.Application.Generals.Dtos.Liabilities;
+using Jazani.Domain.Generals.Models;
+using Jazani.Domain.Generals.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace Jazani.Application.Generals.Services.Implementatios
 {
@@ -9,62 +11,84 @@ namespace Jazani.Application.Generals.Services.Implementatios
     {
         private readonly ILiabilitieRepository _liabilitieTypeRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<LiabilitieService> _logger;
 
-        public LiabilitieService(ILiabilitieRepository liabilitieTypeRepository, IMapper mapper)
+        public LiabilitieService(ILiabilitieRepository liabilitieTypeRepository, IMapper mapper, ILogger<LiabilitieService> logger)
         {
-            this._liabilitieTypeRepository = liabilitieTypeRepository;
+            _liabilitieTypeRepository = liabilitieTypeRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
-        public async Task<LiabilitieDto> CreateAsync(LiabilitieSaveDto liabilitieTypeSaveDto )
+        public async Task<LiabilitieDto> CreateAsync(LiabilitieSaveDto liabilitieSaveDto)
         {
             //throw new NotImplementedException();
-            Liabilitie liabilitieType = _mapper.Map<Liabilitie>(liabilitieTypeSaveDto);
-            liabilitieType.RegistrationDate = DateTime.Now;
-            liabilitieType.State = true;
+            Liabilitie liabilitie = _mapper.Map<Liabilitie>(liabilitieSaveDto);
+            liabilitie.RegistrationDate = DateTime.Now;
+            liabilitie.State = true;
 
-            await _liabilitieTypeRepository.SaveAsync(liabilitieType);
+            await _liabilitieTypeRepository.SaveAsync(liabilitie);
 
-            return _mapper.Map<LiabilitieDto>(liabilitieType);
+            return _mapper.Map<LiabilitieDto>(liabilitie);
         }
 
         public async Task<LiabilitieDto?> DisabledAsync(int id)
         {
             //throw new NotImplementedException();
-            Liabilitie? liabilitieType = await _liabilitieTypeRepository.FindByIdAsync(id);
-            liabilitieType.State = false;
+            Liabilitie? liabilitie = await _liabilitieTypeRepository.FindByIdAsync(id);
 
-            await _liabilitieTypeRepository.SaveAsync(liabilitieType);
+            if (liabilitie is null) throw LiabilitieNotFound(id);
 
-            return _mapper.Map<LiabilitieDto>(liabilitieType);
+            liabilitie.State = false;
+
+            await _liabilitieTypeRepository.SaveAsync(liabilitie);
+
+            return _mapper.Map<LiabilitieDto>(liabilitie);
         }
 
-        public async Task<LiabilitieDto?> EditAsync(int id, LiabilitieSaveDto? liabilitieTypeSaveDto)
+        public async Task<LiabilitieDto?> EditAsync(int id, LiabilitieSaveDto? liabilitieSaveDto)
         {
             //throw new NotImplementedException();
-            Liabilitie? liabilitieType = await _liabilitieTypeRepository.FindByIdAsync(id);
-            _mapper.Map<LiabilitieSaveDto?, Liabilitie?>(liabilitieTypeSaveDto, liabilitieType);
+            Liabilitie? liabilitie = await _liabilitieTypeRepository.FindByIdAsync(id);
 
-            await _liabilitieTypeRepository.SaveAsync(liabilitieType);
+            if (liabilitie is null) throw LiabilitieNotFound(id);
 
-            return _mapper.Map<LiabilitieDto>(liabilitieType);
+            _mapper.Map<LiabilitieSaveDto?, Liabilitie?>(liabilitieSaveDto, liabilitie);
+
+            await _liabilitieTypeRepository.SaveAsync(liabilitie);
+
+            return _mapper.Map<LiabilitieDto>(liabilitie);
         }
 
         public async Task<IReadOnlyList<LiabilitieDto>> FindAllAsync()
         {
             //throw new NotImplementedException();
-            IReadOnlyList<Liabilitie> liabilitieType = await _liabilitieTypeRepository.FindAllAsync();
+            IReadOnlyList<Liabilitie> liabilitie = await _liabilitieTypeRepository.FindAllAsync();
 
-            return _mapper.Map<IReadOnlyList<LiabilitieDto>>(liabilitieType);
+            return _mapper.Map<IReadOnlyList<LiabilitieDto>>(liabilitie);
         }
 
         public async Task<LiabilitieDto?> FindByIdAsync(int id)
         {
             //throw new NotImplementedException();
-            Liabilitie? liabilitieType = await _liabilitieTypeRepository.FindByIdAsync(id);
+            Liabilitie? liabilitie = await _liabilitieTypeRepository.FindByIdAsync(id);
 
-            return _mapper.Map<LiabilitieDto>(liabilitieType);
+            //if (liabilitie is null) throw new NotFoundCoreException("Tipo de Liabilie no encontrado para el id: " + id);  //Validación
+            if (liabilitie is null)
+            {
+                _logger.LogWarning("Tipo de liabilitie no encontrado: " + id);
+                throw LiabilitieNotFound(id);  //Validación
+            }
 
+            _logger.LogInformation("Tipo de liabilitie {name}", liabilitie.Name);
+
+            return _mapper.Map<LiabilitieDto>(liabilitie);
+        }
+
+
+        public NotFoundCoreException LiabilitieNotFound(int id)
+        {
+            return new NotFoundCoreException("Tipo de liabilitie no encontrado: " + id);
         }
     }
 }

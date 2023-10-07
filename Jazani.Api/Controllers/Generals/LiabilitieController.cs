@@ -1,5 +1,7 @@
-﻿using Jazani.Application.Generals.Dtos.Liabilities;
+﻿using Jazani.Api.Exceptions;
+using Jazani.Application.Generals.Dtos.Liabilities;
 using Jazani.Application.Generals.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,16 +30,24 @@ namespace Jazani.Api.Controllers.Generals
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
-        public async Task<LiabilitieDto?> Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK,Type=typeof(LiabilitieDto))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorModel))]
+        public async Task<Results<NotFound,Ok<LiabilitieDto>>?> Get(int id)
         {
-            return await _liabilitieTypeService.FindByIdAsync(id);
+            //return await _liabilitieTypeService.FindByIdAsync(id);
+            var res= await _liabilitieTypeService.FindByIdAsync(id);
+
+            return TypedResults.Ok(res);
         }
 
         // POST api/<ValuesController>
         [HttpPost]
-        public async Task<LiabilitieDto> Post([FromBody] LiabilitieSaveDto ltSaveDto)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(LiabilitieDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest,Type=typeof(ErrorResponse))]
+        public async Task<Results<BadRequest,CreatedAtRoute<LiabilitieDto>>> Post([FromBody] LiabilitieSaveDto ltSaveDto)
         {   
-            return await _liabilitieTypeService.CreateAsync(ltSaveDto);
+            var res= await _liabilitieTypeService.CreateAsync(ltSaveDto);
+            return TypedResults.CreatedAtRoute(res); 
         }
 
         // PUT api/<ValuesController>/5

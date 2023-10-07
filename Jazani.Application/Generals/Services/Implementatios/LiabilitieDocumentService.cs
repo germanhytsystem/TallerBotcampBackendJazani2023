@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Jazani.Application.Cores.Exceptions;
 using Jazani.Application.Generals.Dtos.LiabilitieDocuments;
 using Jazani.Domain.Generals.Models;
 using Jazani.Domain.Generals.Repositories;
@@ -9,6 +10,7 @@ namespace Jazani.Application.Generals.Services.Implementatios
     {
         private readonly ILiabilitieDocumentRepository _liabilitieDocumentRepository;
         private readonly IMapper _mapper;
+        //private readonly 
 
         public LiabilitieDocumentService(ILiabilitieDocumentRepository liabilitieDocumentRepository, IMapper mapper)
         {
@@ -32,6 +34,9 @@ namespace Jazani.Application.Generals.Services.Implementatios
         {
             //throw new NotImplementedException();
             LiabilitieDocument? liabilitieDocument = await _liabilitieDocumentRepository.FindByIdAsync(id);
+
+            if (liabilitieDocument is null) throw LiabilitieDocumentNotFound(id);
+
             liabilitieDocument.State = false;
 
             await _liabilitieDocumentRepository.SaveAsync(liabilitieDocument);
@@ -43,6 +48,8 @@ namespace Jazani.Application.Generals.Services.Implementatios
         {
             // throw new NotImplementedException();
             LiabilitieDocument? liabilitieDocument = await _liabilitieDocumentRepository.FindByIdAsync(id);
+
+            if (liabilitieDocument is null) throw LiabilitieDocumentNotFound(id);
 
             _mapper.Map<LiabilitieDocumentSaveDto?, LiabilitieDocument?>(saveDto, liabilitieDocument);
 
@@ -65,8 +72,16 @@ namespace Jazani.Application.Generals.Services.Implementatios
             //throw new NotImplementedException();
             LiabilitieDocument? liabilitieDocument = await _liabilitieDocumentRepository.FindByIdAsync(id);
 
+            if (liabilitieDocument is null) throw LiabilitieDocumentNotFound(id);
 
             return _mapper.Map<LiabilitieDocumentDto>(liabilitieDocument);
         }
+
+
+        public NotFoundCoreException LiabilitieDocumentNotFound(int id)
+        {
+            return new NotFoundCoreException("Tipo de liabilitirDouemnt no encontrado: " + id);
+        }
+
     }
 }

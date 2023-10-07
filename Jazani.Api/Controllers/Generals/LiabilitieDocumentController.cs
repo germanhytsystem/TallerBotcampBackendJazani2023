@@ -33,6 +33,18 @@ namespace Jazani.Api.Controllers.Generals
         }
 
         // POST api/<ValuesController>
+        //[HttpPost]
+        //public async Task<IResult> Post([FromBody] LiabilitieDocumentSaveDto ltSaveDto)
+        //{
+        //    if (!  ModelState.IsValid){
+        //        var rs = ModelState.Where(x => x.Value?.Errors.Count > 0).ToArray();
+
+        //        return Results.BadRequest(rs);
+        //    }
+        //    var response = await _liabilitieDocumentService.CreateAsync(ltSaveDto);
+
+        //    return Results.Ok(response);
+        //}
         [HttpPost]
         public async Task<LiabilitieDocumentDto> Post([FromBody] LiabilitieDocumentSaveDto ltSaveDto)
         {
