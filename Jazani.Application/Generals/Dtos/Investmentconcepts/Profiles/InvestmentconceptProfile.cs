@@ -14,6 +14,8 @@ namespace Jazani.Application.Generals.Dtos.Investmentconcepts.Profiles
             
             CreateMap<Investmentconcept,InvestmentconceptDto>();
 
+            CreateMap<Investmentconcept,InvestmentconceptSimpleDto>();
+
             CreateMap<Investmentconcept,InvestmentconceptSaveDto>().ReverseMap();
         }
     }

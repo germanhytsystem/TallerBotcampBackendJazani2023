@@ -10,9 +10,9 @@
         public DateTime RegistrationDate { get; set; }
         public bool State { get; set; }
 
-       // public virtual ICollection<Liabilitie>? Liabilities { get; set; }
 
+        public virtual ICollection<Investment>? Investments { get; set; }
+        public virtual ICollection<Liabilitie>? Liabilities { get; set; }
 
-        public virtual Investment? Investment { get; set; }
     }
 }

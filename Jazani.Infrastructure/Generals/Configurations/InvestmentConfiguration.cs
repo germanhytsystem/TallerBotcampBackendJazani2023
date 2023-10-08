@@ -2,11 +2,6 @@
 using Jazani.Infrastructure.Cores.Converters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jazani.Infrastructure.Generals.Configurations
 {
@@ -29,6 +24,16 @@ namespace Jazani.Infrastructure.Generals.Configurations
                 .HasColumnName("registrationdate")
                 .HasConversion(new DateTimeToDateTimeOffset());
             builder.Property(t => t.State).HasColumnName("state");
+
+
+            builder.HasOne(one => one.Investmentconcept).WithMany(many => many.Investments).HasForeignKey(fk => fk.Investmentconceptid);
+            builder.HasOne(one => one.Miningconcession).WithMany(many => many.Investments).HasForeignKey(fk => fk.Miningconcessionid);
+            builder.HasOne(one => one.Periodtype).WithMany(many => many.Investments).HasForeignKey(fk => fk.Periodtypeid);
+            builder.HasOne(one => one.Measureunit).WithMany(many => many.Investments).HasForeignKey(fk => fk.Measureunitid);
+            builder.HasOne(one => one.Investmenttype).WithMany(many => many.Investments).HasForeignKey(fk => fk.Investmenttypeid);
+            builder.HasOne(one => one.Holder).WithMany(many => many.Investments).HasForeignKey(fk => fk.Holderid);
+
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Jazani.Application.Generals.Dtos.Miningconcessions
 {
     public class MiningconcessionSaveDto
     {
-        public int Code { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; } = default!;
         public string? Description { get; set; }
     }

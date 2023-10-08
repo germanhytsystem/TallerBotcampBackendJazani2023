@@ -8,7 +8,7 @@ namespace Jazani.Application.Generals.Dtos.Holders.Profiles
         public HolderProfile()
         {
             CreateMap<Holder, HolderDto>();
-            //CreateMap<Holder, HolderSimpleDto>();
+            CreateMap<Holder, HolderSimpleDto>();
 
             CreateMap<Holder, HolderSaveDto>().ReverseMap();
         }

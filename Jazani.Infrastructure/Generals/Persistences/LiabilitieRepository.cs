@@ -16,16 +16,18 @@ namespace Jazani.Infrastructure.Generals.Persistences
             _dbContext = dbContext;
         }
 
-        //public override async Task<IReadOnlyList<Liabilitie>> FindAllAsync()
-        //{
-        //    return await _dbContext.Set<Liabilitie>().Include(t => t.Holder).AsNoTracking().ToListAsync();
-        //}
+        public override async Task<IReadOnlyList<Liabilitie>> FindAllAsync()
+        {
+            return await _dbContext.Set<Liabilitie>().Include(t => t.Holder).AsNoTracking().ToListAsync();
+        }
 
-        //public override async Task<Liabilitie?> FindByIdAsync(int id)
-        //{
-        //    return await _dbContext.Set<Liabilitie>().Include(t => t.Holder).FirstOrDefaultAsync(t => t.Id== id);
+        public override async Task<Liabilitie?> FindByIdAsync(int id)
+        {
+            return await _dbContext.Set<Liabilitie>().Include(t => t.Holder).FirstOrDefaultAsync(t => t.Id == id);
 
-        //}
+        }
+
+
 
         //private readonly ApplicationDbContext _dbContext;
 
@@ -33,7 +35,6 @@ namespace Jazani.Infrastructure.Generals.Persistences
         //{
         //    _dbContext = dbContext;
         //}
-
 
         //public async Task<IReadOnlyList<LiabilitieType>> FindAllAsync()
         //{

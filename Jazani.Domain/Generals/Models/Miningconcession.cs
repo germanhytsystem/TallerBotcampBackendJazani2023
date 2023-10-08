@@ -1,17 +1,15 @@
-﻿namespace Jazani.Domain.Generals.Models
+﻿using Jazani.Domain.Cores.Models;
+
+namespace Jazani.Domain.Generals.Models
 {
-    public class Miningconcession
+    public class Miningconcession:CoreModel<int>
     {
-        public int Id { get; set; }
-        public int Code { get; set; }
-        public string Name { get; set; } = default!;
+        public string? Code { get; set; }
+        public string? Name { get; set; } = default!;
         public string? Description { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public bool State { get; set; }
 
 
-        public virtual ICollection<Miningconcession>? Miningconcessions { get; set; }
-
+        public virtual ICollection<Investment>? Investments { get; set; }
 
     }
 }
