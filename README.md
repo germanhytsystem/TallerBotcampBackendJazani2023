@@ -1,4 +1,10 @@
 # TallerBotcampBackendJazani2023
-- Table LiabilitiesDocument
-- Table Holder
-- Table Liabilitie
+Tabla principal: 
+- mc.investment
+tablas base: 
+- soc.holder , 
+- mc.investmentconcept ,
+- mc.investmenttype ,
+- mc.miningconcession ,
+- ge.measureunit , 
+- ge.periodtype 
