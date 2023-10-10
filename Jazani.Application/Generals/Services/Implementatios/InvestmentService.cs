@@ -2,6 +2,7 @@
 using Jazani.Application.Cores.Exceptions;
 using Jazani.Application.Generals.Dtos.Investmentconcepts;
 using Jazani.Application.Generals.Dtos.Investments;
+using Jazani.Core.Paginations;
 using Jazani.Domain.Generals.Models;
 using Jazani.Domain.Generals.Repositories;
 using System;
@@ -87,6 +88,15 @@ namespace Jazani.Application.Generals.Services.Implementatios
 
         }
 
+        public async Task<ResponsePagination<InvestmentDto>> PaginatedSearch(RequestPagination<InvestmentFilterDto> request)
+        {
+            //throw new NotImplementedException();
+            var entity = _mapper.Map<RequestPagination<Investment>>(request);
+            var response = await _investmentRepository.PaginatedSearch(entity);
+
+            return _mapper.Map<ResponsePagination<InvestmentDto>>(response);
+
+        }
 
         private NotFoundCoreException InvestmentNotFound(int id)
         {

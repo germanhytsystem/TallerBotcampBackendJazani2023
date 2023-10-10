@@ -11,6 +11,8 @@ namespace Jazani.Application.Generals.Dtos.Investments
     {
         public int Id { get; set; }
         public string? Description { get; set; }
+        public int? Year { get; set; }
+        public string? Monthname { get; set; }
         //public int Miningconcessionid { get; set; }
         public MiningconcessionSimpleDto? Miningconcession { get; set; }
         //public int Investmenttypeid { get; set; }

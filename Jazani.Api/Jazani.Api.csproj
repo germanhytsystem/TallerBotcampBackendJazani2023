@@ -27,5 +27,6 @@
     <ProjectReference Include="..\Jazani.Application\Jazani.Application.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\﻿Jazani.Core\﻿Jazani.Core.csproj" />
   </ItemGroup>
 </Project>

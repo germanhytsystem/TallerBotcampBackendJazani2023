@@ -1,6 +1,8 @@
 ﻿using Jazani.Domain.Admins.Repositories;
+using Jazani.Domain.Cores.Paginations;
 using Jazani.Domain.Generals.Repositories;
 using Jazani.Infrastructure.Admins.Persistences;
+using Jazani.Infrastructure.Cores.Paginations;
 using Jazani.Infrastructure.Generals.Persistences;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,7 @@ namespace Jazani.Infrastructure.Cores.Contexts
             //services.AddTransient<ILiabilitieRepository, LiabilitieRepository>();
             //services.AddTransient<IModuleRepository, ModuleRepository>();
 
+            services.AddTransient(typeof(IPaginator<>), typeof(Paginator<>));
 
 
             return services;

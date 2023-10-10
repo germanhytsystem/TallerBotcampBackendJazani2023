@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Jazani.Domain.Generals.Repositories
 {
-    public interface IInvestmentRepository:ICrudRepository<Investment,int>
+    public interface IInvestmentRepository:ICrudRepository<Investment,int>,IPaginatedRepository<Investment>
     {
 
     }

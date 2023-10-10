@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1706.4
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Api", "Jazani.Api\Jazani.Api.csproj", "{184587DF-ECBC-4E31-A324-6885ECDF1633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jazani.Api", "Jazani.Api\Jazani.Api.csproj", "{184587DF-ECBC-4E31-A324-6885ECDF1633}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Domain", "Jazani.Domain\Jazani.Domain.csproj", "{22D78986-9F79-4653-89BE-BB2EDAD96E2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jazani.Domain", "Jazani.Domain\Jazani.Domain.csproj", "{22D78986-9F79-4653-89BE-BB2EDAD96E2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Infrastructure", "Jazani.Infrastructure\Jazani.Infrastructure.csproj", "{838AF706-4EA3-4007-8250-5069DA16AB76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jazani.Infrastructure", "Jazani.Infrastructure\Jazani.Infrastructure.csproj", "{838AF706-4EA3-4007-8250-5069DA16AB76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.Application", "Jazani.Application\Jazani.Application.csproj", "{AAC23F6A-8272-4608-9BA9-D606A623A1B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jazani.Application", "Jazani.Application\Jazani.Application.csproj", "{AAC23F6A-8272-4608-9BA9-D606A623A1B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "﻿Jazani.Core", "﻿Jazani.Core\﻿Jazani.Core.csproj", "{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{AAC23F6A-8272-4608-9BA9-D606A623A1B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAC23F6A-8272-4608-9BA9-D606A623A1B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAC23F6A-8272-4608-9BA9-D606A623A1B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

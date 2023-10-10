@@ -5,6 +5,8 @@ namespace Jazani.Domain.Generals.Models
     public class Investment:CoreModel<int>
     {
         public string? Description { get; set; }
+        public int? Year { get; set; }
+        public string? Monthname { get; set; }
         public int? Miningconcessionid { get; set; }
         public int? Investmenttypeid { get; set; }
         public int? Periodtypeid { get; set; }
