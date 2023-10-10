@@ -64,7 +64,8 @@ namespace Jazani.Infrastructure.Generals.Persistences
                     .Where(x=>
                         (string.IsNullOrWhiteSpace(filter.Description) || x.Description.ToUpper().Contains(filter.Description.ToUpper())
                         && (filter.Year == null || filter.Year == 0) || x.Year == filter.Year)
-                        && (string.IsNullOrWhiteSpace(filter.Monthname) || x.Monthname.ToUpper().Contains(filter.Monthname.ToUpper()))
+                         && (string.IsNullOrWhiteSpace(filter.Monthname) || x.Monthname.ToUpper().Contains(filter.Monthname.ToUpper()))
+
                     );
             }
 
