@@ -1,4 +1,4 @@
 # TallerBotcampBackendJazani2023
-- Table LiabilitiesDocument
+- Table Investment
 - Table Holder
-- Table Liabilitie
+- Table MiningConcession
