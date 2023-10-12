@@ -2,6 +2,7 @@
 using Jazani.Domain.Generals.Repositories;
 using AutoMapper;
 using Jazani.Application.Generals.Dtos.Holders;
+using Microsoft.Extensions.Logging;
 
 namespace Jazani.Application.Generals.Services.Implementatios
 {
@@ -9,11 +10,13 @@ namespace Jazani.Application.Generals.Services.Implementatios
     {
         private readonly IHolderRepository _holderRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<HolderService> _logger;
 
-        public HolderService(IHolderRepository holderRepository, IMapper mapper)
+        public HolderService(IHolderRepository holderRepository, IMapper mapper, ILogger<HolderService> logger)
         {
             _holderRepository = holderRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<HolderDto> CreateAsync(HolderSaveDto holderSaveDto )

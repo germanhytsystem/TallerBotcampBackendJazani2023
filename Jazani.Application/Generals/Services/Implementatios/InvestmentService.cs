@@ -5,6 +5,7 @@ using Jazani.Application.Generals.Dtos.Investments;
 using Jazani.Core.Paginations;
 using Jazani.Domain.Generals.Models;
 using Jazani.Domain.Generals.Repositories;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,24 +14,26 @@ using System.Threading.Tasks;
 
 namespace Jazani.Application.Generals.Services.Implementatios
 {
-    public class InvestmentService:IInvestmentService
+    public class InvestmentService : IInvestmentService
     {
         private readonly IInvestmentRepository _investmentRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<InvestmentService> _logger;
 
-        public InvestmentService(IInvestmentRepository investmentRepository, IMapper mapper)
+        public InvestmentService(IInvestmentRepository investmentRepository, IMapper mapper, ILogger<InvestmentService> logger)
         {
             _investmentRepository = investmentRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<InvestmentDto> CreateAsync(InvestmentSaveDto saveDto)
         {
-           // throw new NotImplementedException();
-            Investment? investment= _mapper.Map<Investment>(saveDto);
+            // throw new NotImplementedException();
+            Investment? investment = _mapper.Map<Investment>(saveDto);
             investment.RegistrationDate = DateTime.Now;
             investment.State = true;
-           
+
             await _investmentRepository.SaveAsync(investment);
 
 
@@ -55,7 +58,7 @@ namespace Jazani.Application.Generals.Services.Implementatios
         public async Task<InvestmentDto> EditAsync(int id, InvestmentSaveDto saveDto)
         {
             //hrow new NotImplementedException();
-            Investment? Investment=await _investmentRepository.FindByIdAsync(id);
+            Investment? Investment = await _investmentRepository.FindByIdAsync(id);
 
             if (Investment is null) throw InvestmentNotFound(id);
 
@@ -72,7 +75,7 @@ namespace Jazani.Application.Generals.Services.Implementatios
             //throw new NotImplementedException();
             IReadOnlyList<Investment> investments = await _investmentRepository.FindAllAsync();
 
-            return  _mapper.Map<IReadOnlyList<InvestmentDto>>(investments);
+            return _mapper.Map<IReadOnlyList<InvestmentDto>>(investments);
 
         }
 
@@ -82,7 +85,14 @@ namespace Jazani.Application.Generals.Services.Implementatios
 
             Investment? investment = await _investmentRepository.FindByIdAsync(id);
 
-            if (investment is null) throw InvestmentNotFound(id);
+
+            if (investment is null)
+            {
+                _logger.LogWarning("Tipo de Investment no encontrado para el id: " + id);
+                throw InvestmentNotFound(id);
+            }
+
+            _logger.LogInformation("Tipo de Investment {Description}", investment.Description);
 
             return _mapper.Map<InvestmentDto>(investment);
 

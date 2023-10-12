@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jazani.Infrastructure", "Ja
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jazani.Application", "Jazani.Application\Jazani.Application.csproj", "{AAC23F6A-8272-4608-9BA9-D606A623A1B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "﻿Jazani.Core", "﻿Jazani.Core\﻿Jazani.Core.csproj", "{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "﻿Jazani.Core", "﻿Jazani.Core\﻿Jazani.Core.csproj", "{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jazani.UnitTest", "Jazani.UnitTest\Jazani.UnitTest.csproj", "{51450A18-BF02-4050-A32B-2CBC19B9CC18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4F3C96F-F6ED-477E-ACD9-048DB44AF6E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51450A18-BF02-4050-A32B-2CBC19B9CC18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51450A18-BF02-4050-A32B-2CBC19B9CC18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51450A18-BF02-4050-A32B-2CBC19B9CC18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51450A18-BF02-4050-A32B-2CBC19B9CC18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
