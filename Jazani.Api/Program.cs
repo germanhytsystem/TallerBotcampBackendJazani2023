@@ -1,12 +1,21 @@
-﻿using Autofac;
+﻿using _Jazani.Core.Securities.Services;
+using _Jazani.Core.Securities.Services.Implementations;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Jazani.Api.Filters;
 using Jazani.Api.Middlewares;
 using Jazani.Application.Cores.Contexts;
 using Jazani.Infrastructure.Cores.Contexts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
+using System.Text;
 
 
 // Add services to the container.
@@ -26,10 +35,16 @@ var logger = new LoggerConfiguration()
     .CreateLogger();
 builder.Logging.AddSerilog(logger);
 
-//VALIDACIONES
+//FILTERS
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ValidationFilter());
+
+    AuthorizationPolicy authorizationPolicy = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build();
+
+    options.Filters.Add(new AuthorizeFilter());
 });
 
 builder.Services
@@ -50,6 +65,56 @@ builder.Services.Configure<RouteOptions>(options =>
 // Learn more about config  uring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//PASSWORDHASHER
+builder.Services.Configure<PasswordHasherOptions>(options=>
+{
+    options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3;
+});
+//ISECURITYSERVICE
+builder.Services.AddTransient<ISecurityService,SecurityService>();
+
+//JWT
+string jwtSecretKey = builder.Configuration.GetSection("Security:JwtSecrectKey").Get<string>();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    byte[] key = Encoding.ASCII.GetBytes(jwtSecretKey);
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateLifetime = true,
+        ValidIssuer = "",
+        ValidAudience = "",
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateIssuerSigningKey = true
+    };
+});
+
+
+// AUTHORIZEOPERATIONFILTER
+builder.Services.AddSwaggerGen(options =>
+{
+    options.OperationFilter<AuthorizeOperationFilter>();
+
+    string schemeName = "Bearer";
+    options.AddSecurityDefinition(schemeName, new OpenApiSecurityScheme()
+    {
+        Name = schemeName,
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+        Description = "Add token.",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http
+    });
+
+});
+
+
 
 // INFRAESTRUCTURE
 builder.Services.addInfrastructureServices(builder.Configuration);
