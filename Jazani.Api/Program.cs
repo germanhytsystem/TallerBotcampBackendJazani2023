@@ -40,11 +40,11 @@ builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ValidationFilter());
 
-    AuthorizationPolicy authorizationPolicy = new AuthorizationPolicyBuilder()
-    .RequireAuthenticatedUser()
-    .Build();
+    //AuthorizationPolicy authorizationPolicy = new AuthorizationPolicyBuilder()
+    //.RequireAuthenticatedUser()
+    //.Build();
 
-    options.Filters.Add(new AuthorizeFilter());
+    //options.Filters.Add(new AuthorizeFilter());
 });
 
 builder.Services
@@ -75,14 +75,14 @@ builder.Services.Configure<PasswordHasherOptions>(options=>
 builder.Services.AddTransient<ISecurityService,SecurityService>();
 
 //JWT
-string jwtSecretKey = builder.Configuration.GetSection("Security:JwtSecrectKey").Get<string>();
+string? jwtSecretKey = builder.Configuration.GetSection("Security:JwtSecrectKey").Get<string>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    byte[] key = Encoding.ASCII.GetBytes(jwtSecretKey);
+    byte[]? key = Encoding.ASCII.GetBytes(jwtSecretKey);
     options.TokenValidationParameters = new TokenValidationParameters
     {
         IssuerSigningKey = new SymmetricSecurityKey(key),
@@ -152,6 +152,16 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 
 app.UseHttpsRedirection();
+
+//CORS
+app.UseCors(options =>
+{
+    options.AllowAnyHeader()
+    .AllowAnyOrigin() 
+    .AllowAnyMethod()
+    .Build();
+});
+
 
 app.UseAuthorization();
 
